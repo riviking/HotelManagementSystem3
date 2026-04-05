@@ -32,7 +32,8 @@ namespace HotelManagementSystem3
             RoomID,
             DateIn,
             DateOut,
-            TotalAmount
+            TotalAmount,
+            PaymentStatus
         FROM Bookings";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -126,10 +127,10 @@ namespace HotelManagementSystem3
 
                 // 🔥 STEP 1: DOUBLE BOOKING CHECK (NO STATUS USED)
                 SqlCommand check = new SqlCommand(@"
-        SELECT COUNT(*) 
-        FROM Bookings
-        WHERE RoomID=@room
-        AND (@in < DateOut AND @out > DateIn)", con);
+                INSERT INTO Bookings 
+                (CustomerID, RoomID, DateIn, DateOut, TotalAmount, PaymentStatus)
+                VALUES 
+                (@c,@r,@in,@out,@t,'Unpaid')", con);
 
                 check.Parameters.AddWithValue("@room", cmbRoom.SelectedValue);
                 check.Parameters.AddWithValue("@in", dtpIn.Value);
@@ -146,15 +147,18 @@ namespace HotelManagementSystem3
                 }
 
                 // 🔥 STEP 2: INSERT BOOKING
-                string query = "INSERT INTO Bookings (CustomerID, RoomID, DateIn, DateOut, TotalAmount) VALUES (@c,@r,@in,@out,@t)";
+                SqlCommand cmd = new SqlCommand(@"
+        INSERT INTO Bookings 
+        (CustomerID, RoomID, DateIn, DateOut, TotalAmount, PaymentStatus)
+        VALUES 
+        (@c,@r,@in,@out,@t,'Unpaid')", con);
 
-                SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@c", cmbCustomer.SelectedValue);
                 cmd.Parameters.AddWithValue("@r", cmbRoom.SelectedValue);
                 cmd.Parameters.AddWithValue("@in", dtpIn.Value);
                 cmd.Parameters.AddWithValue("@out", dtpOut.Value);
-                cmd.Parameters.AddWithValue("@t", txtTotal.Text);
+                cmd.Parameters.AddWithValue("@t", Convert.ToDecimal(txtTotal.Text));
 
                 con.Open();
                 cmd.ExecuteNonQuery();

@@ -159,8 +159,7 @@ namespace HotelManagementSystem3
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-            Login l = new Login();
-            l.Show();
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

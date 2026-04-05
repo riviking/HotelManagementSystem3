@@ -20,13 +20,27 @@ namespace HotelManagementSystem3
 
         private void LoadBookings()
         {
-            SqlDataAdapter da = new SqlDataAdapter("SELECT BookingID FROM Bookings", DB.GetConnection());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            try
+            {
+                SqlConnection con = DB.GetConnection();
 
-            cmbBooking2.DisplayMember = "BookingID";
-            cmbBooking2.ValueMember = "BookingID";
-            cmbBooking2.DataSource = dt;
+                string query = @"
+        SELECT BookingID 
+        FROM Bookings
+        WHERE PaymentStatus = 'Unpaid'";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbBooking2.DisplayMember = "BookingID";
+                cmbBooking2.ValueMember = "BookingID";
+                cmbBooking2.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         bool isLoaded = false;
@@ -127,20 +141,35 @@ namespace HotelManagementSystem3
                     return;
                 }
 
+                int bookingId = Convert.ToInt32(cmbBooking2.SelectedValue);
+
                 SqlConnection con = DB.GetConnection();
 
+                // 🔥 STEP 1: INSERT PAYMENT
                 string query = @"
         INSERT INTO Payments (BookingID, TotalAmount, PaidDate)
         VALUES (@b, @a, @d)";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.Add("@b", SqlDbType.Int).Value = Convert.ToInt32(cmbBooking2.SelectedValue);
+                cmd.Parameters.Add("@b", SqlDbType.Int).Value = bookingId;
                 cmd.Parameters.Add("@a", SqlDbType.Decimal).Value = Convert.ToDecimal(txtAmount.Text);
                 cmd.Parameters.Add("@d", SqlDbType.DateTime).Value = dtpPaidDate.Value;
 
                 con.Open();
                 cmd.ExecuteNonQuery();
+                con.Close();
+
+                // 🔥 STEP 2: UPDATE BOOKING STATUS → PAID
+                SqlCommand updateCmd = new SqlCommand(@"
+        UPDATE Bookings 
+        SET PaymentStatus='Paid'
+        WHERE BookingID=@id", con);
+
+                updateCmd.Parameters.AddWithValue("@id", bookingId);
+
+                con.Open();
+                updateCmd.ExecuteNonQuery();
                 con.Close();
 
                 MessageBox.Show("Payment Successful 💳");
