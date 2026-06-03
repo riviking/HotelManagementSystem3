@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
 
 namespace HotelManagementSystem3
 {
@@ -24,11 +23,12 @@ namespace HotelManagementSystem3
         {
             try
             {
-                string conn = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=HotelDB;Integrated Security=True";
+        // Use SQL Authentication with the provided user
+        string conn= @"Data Source=VIMUTHLAP;Initial Catalog=HotelDB;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+        SqlConnection con = new SqlConnection(conn);
 
-                SqlConnection con = new SqlConnection(conn);
-
-                string query = "SELECT COUNT(*) FROM Users WHERE Username=@u AND PasswordHash=@p";
+                // Use plain Password column (no hashing) for authentication
+                string query = "SELECT COUNT(*) FROM Users WHERE Username=@u AND Password=@p";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
@@ -55,17 +55,6 @@ namespace HotelManagementSystem3
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private static string HashPassword(string password)
-        {
-            if (password == null) throw new ArgumentNullException(nameof(password));
-            using (var sha256 = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(password);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
             }
         }
 

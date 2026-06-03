@@ -145,7 +145,7 @@ namespace HotelManagementSystem3
 
                 SqlConnection con = DB.GetConnection();
 
-                // 🔥 STEP 1: INSERT PAYMENT
+                //  STEP 1: INSERT PAYMENT
                 string query = @"
         INSERT INTO Payments (BookingID, TotalAmount, PaidDate)
         VALUES (@b, @a, @d)";
@@ -160,7 +160,7 @@ namespace HotelManagementSystem3
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                // 🔥 STEP 2: UPDATE BOOKING STATUS → PAID
+                //  STEP 2: UPDATE BOOKING STATUS → PAID
                 SqlCommand updateCmd = new SqlCommand(@"
         UPDATE Bookings 
         SET PaymentStatus='Paid'

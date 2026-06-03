@@ -125,7 +125,7 @@ namespace HotelManagementSystem3
             {
                 SqlConnection con = DB.GetConnection();
 
-                // 🔥 STEP 1: DOUBLE BOOKING CHECK (NO STATUS USED)
+                //  STEP 1: DOUBLE BOOKING CHECK (NO STATUS USED)
                 SqlCommand check = new SqlCommand(@"
                 INSERT INTO Bookings 
                 (CustomerID, RoomID, DateIn, DateOut, TotalAmount, PaymentStatus)
@@ -146,7 +146,7 @@ namespace HotelManagementSystem3
                     return;
                 }
 
-                // 🔥 STEP 2: INSERT BOOKING
+                //  STEP 2: INSERT BOOKING
                 SqlCommand cmd = new SqlCommand(@"
         INSERT INTO Bookings 
         (CustomerID, RoomID, DateIn, DateOut, TotalAmount, PaymentStatus)
@@ -164,7 +164,7 @@ namespace HotelManagementSystem3
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                // 🔥 STEP 3: UPDATE ROOM STATUS
+                // STEP 3: UPDATE ROOM STATUS
                 SqlCommand cmd2 = new SqlCommand("UPDATE Rooms SET Status='Booked' WHERE RoomID=@id", con);
                 cmd2.Parameters.AddWithValue("@id", cmbRoom.SelectedValue);
 
@@ -203,7 +203,7 @@ namespace HotelManagementSystem3
 
                 SqlConnection con = DB.GetConnection();
 
-                // 🔥 STEP 1: DELETE BOOKING
+                // STEP 1: DELETE BOOKING
                 SqlCommand cmd = new SqlCommand("DELETE FROM Bookings WHERE BookingID=@id", con);
                 cmd.Parameters.AddWithValue("@id", bookingId);
 
@@ -211,7 +211,7 @@ namespace HotelManagementSystem3
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                // 🔥 STEP 2: FREE THE ROOM
+                // STEP 2: FREE THE ROOM
                 SqlCommand cmd2 = new SqlCommand("UPDATE Rooms SET Status='Available' WHERE RoomID=@room", con);
                 cmd2.Parameters.AddWithValue("@room", roomId);
 

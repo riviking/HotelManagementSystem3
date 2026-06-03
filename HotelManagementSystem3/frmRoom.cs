@@ -42,7 +42,7 @@ namespace HotelManagementSystem3
             {
                 SqlConnection con = DB.GetConnection();
 
-                string query = "INSERT INTO Rooms (RoomType, PricePerNight, Status) VALUES (@t,@p,@s)";
+                string query = "INSERT INTO Rooms (RoomType, Price, isAvailable) VALUES (@t,@p,@s)";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
