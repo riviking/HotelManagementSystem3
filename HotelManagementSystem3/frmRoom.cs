@@ -47,7 +47,7 @@ namespace HotelManagementSystem3
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@t", cmbType.Text);
-                cmd.Parameters.AddWithValue("@p", txtPricePerNight.Text);
+                cmd.Parameters.AddWithValue("@p", txtPrice.Text);
                 cmd.Parameters.AddWithValue("@s", cmbStatus.Text);
 
                 con.Open();
@@ -70,7 +70,7 @@ namespace HotelManagementSystem3
             {
                 DataGridViewRow row = dgvRooms.Rows[e.RowIndex];
                 cmbType.Text = row.Cells["RoomType"].Value.ToString();
-                txtPricePerNight.Text = row.Cells["PricePerNight"].Value.ToString();
+                txtPrice.Text = row.Cells["Price"].Value.ToString();
                 cmbStatus.Text = row.Cells["Status"].Value.ToString();
             }
         }
@@ -92,9 +92,9 @@ namespace HotelManagementSystem3
             using (SqlConnection con = DB.GetConnection())
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Rooms SET RoomType=@t, PricePerNight=@p, Status=@s WHERE RoomID=@id";
+                cmd.CommandText = "UPDATE Rooms SET RoomType=@t, Price=@p, isAvailable=@s WHERE RoomID=@id";
                 cmd.Parameters.AddWithValue("@t", cmbType.Text);
-                cmd.Parameters.AddWithValue("@p", decimal.TryParse(txtPricePerNight.Text, out var price) ? price : 0m);
+                cmd.Parameters.AddWithValue("@p", decimal.TryParse(txtPrice.Text, out var price) ? price : 0m);
                 cmd.Parameters.AddWithValue("@s", cmbStatus.Text);
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -136,7 +136,7 @@ namespace HotelManagementSystem3
         private void btnClear_Click(object sender, EventArgs e)
         {
            
-            txtPricePerNight.Clear();
+            txtPrice.Clear();
             cmbType.SelectedIndex = -1;
             cmbStatus.SelectedIndex = -1;
             txtSearch.Clear();

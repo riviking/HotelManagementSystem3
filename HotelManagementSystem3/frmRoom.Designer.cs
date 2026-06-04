@@ -36,7 +36,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtPricePerNight = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.labal2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvRooms = new System.Windows.Forms.DataGridView();
@@ -121,14 +121,14 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 16);
             this.label4.TabIndex = 22;
-            this.label4.Text = "PricePerNight";
+            this.label4.Text = "Price";
             // 
-            // txtPricePerNight
+            // txtPrice
             // 
-            this.txtPricePerNight.Location = new System.Drawing.Point(109, 120);
-            this.txtPricePerNight.Name = "txtPricePerNight";
-            this.txtPricePerNight.Size = new System.Drawing.Size(132, 22);
-            this.txtPricePerNight.TabIndex = 21;
+            this.txtPrice.Location = new System.Drawing.Point(109, 120);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(132, 22);
+            this.txtPrice.TabIndex = 21;
             // 
             // labal2
             // 
@@ -209,7 +209,7 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtPricePerNight);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.labal2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvRooms);
@@ -232,7 +232,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPricePerNight;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label labal2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvRooms;

@@ -5,7 +5,7 @@ USE hotelDB;
 
 -- 2. Create the Users Table
 CREATE TABLE Users (
-    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Id INT PRIMARY KEY IDENTITY(1,1),
     Username VARCHAR(50) NOT NULL,
     Password VARCHAR(64) NOT NULL
 );
@@ -13,34 +13,56 @@ CREATE TABLE Users (
 
 -- 3. Create the Rooms Table (Columns inferred/suggested)
 CREATE TABLE Rooms (
-    RoomID INT PRIMARY KEY AUTO_INCREMENT,
-    RoomNumber VARCHAR(10) NOT NULL,
+    RoomID INT PRIMARY KEY IDENTITY(1,1),
     RoomType VARCHAR(50) NOT NULL,
     Price DECIMAL(18,2) NOT NULL,
-    Status BIT DEFAULT 1
+    IsAvailable VARCHAR(20) DEFAULT 'Available'
 );
 
 
 -- 4. Create the Customers Table (Columns inferred/suggested)
 CREATE TABLE Customers (
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    FullName VARCHAR(100) NOT NULL,
+    CustomerID INT PRIMARY KEY IDENTITY(1,1),
+    Name VARCHAR(100) NOT NULL,
     Phone VARCHAR(20),
     NIC VARCHAR(20)
 );
 
+CREATE TABLE Bookings (
+    BookingID INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    RoomID INT NOT NULL,
+    DateIn DATETIME NOT NULL,
+    DateOut DATETIME NOT NULL,
+    TotalAmount DECIMAL(18,2) NOT NULL DEFAULT 0.00,
+    PaymentStatus VARCHAR(20) NOT NULL DEFAULT 'Unpaid', -- 'Unpaid' or 'Paid'
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
+);
+
+-- 6. Payments Table (Used in frmPayment and Income Charts)
+CREATE TABLE Payments (
+    PaymentID INT IDENTITY(1,1) PRIMARY KEY,
+    BookingID INT NOT NULL,
+    TotalAmount DECIMAL(18,2) NOT NULL,
+    PaidDate DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (BookingID) REFERENCES Bookings(BookingID)
+);
 
 -- Insert dummy customers
-INSERT INTO Customers (FullName, Phone, NIC) VALUES 
+INSERT INTO Customers (Name, Phone, NIC) VALUES 
 ('John Doe', '0775555555', '234234234238'),
+('Mark Doe', '0775553333', '344234234238'),
 ('Jane Smith', '0774444444', '46546456469');
 
 -- Insert a test user: Username='admin', Password='password'
-INSERT INTO Users (Username, Password) 
-VALUES ('admin', '234567890');
+INSERT INTO Users (Username, Password) VALUES 
+('qwe', '234'),
+('admin', '234');
 
 -- Insert dummy rooms data
-INSERT INTO Rooms (`RoomNumber`, `RoomType`, `Price`, `IsAvailable`) VALUES 
-('101', 'Single', 99.99, 1),
-('102', 'Double', 149.99, 1),
-('201', 'Suite', 299.99, 1);
+INSERT INTO Rooms (RoomType, Price) VALUES 
+( 'Single', 100.00),
+( 'Double', 150.00),
+( 'Deluxe', 200.00),
+( 'Suite', 300.00);
