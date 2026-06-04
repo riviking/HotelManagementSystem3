@@ -1,5 +1,5 @@
 -- 1. Create the Database
--- CREATE DATABASE hotelDB;
+CREATE DATABASE hotelDB;
 
 USE hotelDB;
 
@@ -10,7 +10,6 @@ CREATE TABLE Users (
     Password VARCHAR(64) NOT NULL
 );
 
-
 -- 3. Create the Rooms Table (Columns inferred/suggested)
 CREATE TABLE Rooms (
     RoomID INT PRIMARY KEY IDENTITY(1,1),
@@ -18,7 +17,6 @@ CREATE TABLE Rooms (
     Price DECIMAL(18,2) NOT NULL,
     IsAvailable VARCHAR(20) DEFAULT 'Available'
 );
-
 
 -- 4. Create the Customers Table (Columns inferred/suggested)
 CREATE TABLE Customers (
@@ -28,6 +26,7 @@ CREATE TABLE Customers (
     NIC VARCHAR(20)
 );
 
+-- 5. Create the Bookings Customers Table (Columns inferred/suggested)
 CREATE TABLE Bookings (
     BookingID INT IDENTITY(1,1) PRIMARY KEY,
     CustomerID INT NOT NULL,
@@ -55,7 +54,7 @@ INSERT INTO Customers (Name, Phone, NIC) VALUES
 ('Mark Doe', '0775553333', '344234234238'),
 ('Jane Smith', '0774444444', '46546456469');
 
--- Insert a test user: Username='admin', Password='password'
+-- Insert a test user: Username='admin', Password='234'
 INSERT INTO Users (Username, Password) VALUES 
 ('qwe', '234'),
 ('admin', '234');

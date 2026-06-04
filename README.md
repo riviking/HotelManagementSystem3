@@ -7,16 +7,17 @@
 <img width="1919" height="994" alt="image" src="https://github.com/user-attachments/assets/a7e49b63-3a0c-4050-933a-b9d1a00ed6ae" />
 
 A desktop-based Hotel Management System developed using C# (.NET) and SQL Server to manage bookings, rooms, and users efficiently.
+## Instructions to use this project
 
 ---
 
 ## 📌 Features
 
-- 🔐 User Login System (Admin / Staff)
+- 🔐 User Signup and Login System (Admin / Staff)
 - 🛏️ Room Management (Add, Update, Delete)
 - 📅 Booking Management
-- 💰 Billing & Total Amount Calculation
-- 👥 Customer Management
+- 💰 PaymentBilling & Total Amount Calculation
+- 👥 Customer Management Checkout
 - 🧾 View Booking Records
 
 ---
@@ -24,7 +25,7 @@ A desktop-based Hotel Management System developed using C# (.NET) and SQL Server
 ## 🛠️ Technologies Used
 
 - C# (.NET Framework / WinForms)
-- Microsoft SQL Server
+- Microsoft SQL Server 2025
 - ADO.NET (Database Connection)
 
 ---
