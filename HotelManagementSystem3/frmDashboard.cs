@@ -46,20 +46,24 @@ namespace HotelManagementSystem3
             this.Hide();
             Login login = new Login();
             login.Show();
-
-            frmCheckOut checkOutForm = new frmCheckOut();
-            checkOutForm.Show(); 
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            this.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
             frmReport r = new frmReport();
             r.Show();
+        }
+
+        private void checkout_Click(object sender, EventArgs e)
+        {
+            frmCheckOut checkOutForm = new frmCheckOut();
+            checkOutForm.Show(); 
         }
     }
 }

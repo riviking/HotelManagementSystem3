@@ -70,6 +70,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(100, 22);
             this.txtUsername.TabIndex = 6;
+            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // btnSignUp
             // 
@@ -79,6 +80,7 @@
             this.btnSignUp.TabIndex = 7;
             this.btnSignUp.Text = "Sign Up";
             this.btnSignUp.UseVisualStyleBackColor = true;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // label1
             // 
@@ -125,6 +127,7 @@
             this.lnkLogin.TabIndex = 12;
             this.lnkLogin.TabStop = true;
             this.lnkLogin.Text = "Already have an account?Login";
+            this.lnkLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLogin_LinkClicked);
             // 
             // frmSignUp
             // 

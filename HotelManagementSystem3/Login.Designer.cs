@@ -34,6 +34,8 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.signupbtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -88,11 +90,33 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // signupbtn
+            // 
+            this.signupbtn.Location = new System.Drawing.Point(124, 338);
+            this.signupbtn.Name = "signupbtn";
+            this.signupbtn.Size = new System.Drawing.Size(109, 34);
+            this.signupbtn.TabIndex = 7;
+            this.signupbtn.Text = "Signup";
+            this.signupbtn.UseVisualStyleBackColor = true;
+            this.signupbtn.Click += new System.EventHandler(this.signupbtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(131, 300);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "No account ? signup";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.signupbtn);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
@@ -114,6 +138,8 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button signupbtn;
+        private System.Windows.Forms.Label label3;
     }
 }
 

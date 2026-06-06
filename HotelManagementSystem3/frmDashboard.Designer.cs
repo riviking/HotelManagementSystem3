@@ -36,6 +36,7 @@
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnPayment = new System.Windows.Forms.Button();
+            this.checkout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -117,11 +118,22 @@
             this.btnPayment.UseVisualStyleBackColor = true;
             this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
+            // checkout
+            // 
+            this.checkout.Location = new System.Drawing.Point(299, 307);
+            this.checkout.Name = "checkout";
+            this.checkout.Size = new System.Drawing.Size(193, 30);
+            this.checkout.TabIndex = 8;
+            this.checkout.Text = "Checkin or Checkout";
+            this.checkout.UseVisualStyleBackColor = true;
+            this.checkout.Click += new System.EventHandler(this.checkout_Click);
+            // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 450);
+            this.ClientSize = new System.Drawing.Size(541, 450);
+            this.Controls.Add(this.checkout);
             this.Controls.Add(this.btnPayment);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogout);
@@ -147,5 +159,6 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnPayment;
+        private System.Windows.Forms.Button checkout;
     }
 }

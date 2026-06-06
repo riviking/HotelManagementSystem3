@@ -7,7 +7,6 @@ namespace HotelManagementSystem3
 {
     public partial class frmCheckOut : Form
     {
-        private string connectionString = @"Server=DESKTOP-PUK4FIM;Database=MyProjectDB;Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;";
 
         public frmCheckOut()
         {
@@ -22,11 +21,12 @@ namespace HotelManagementSystem3
 
         private void LoadActiveBookings()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = DB.GetConnection())
             {
                 try
                 {
-                    connection.Open();
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
                     
                     string query = @"SELECT b.BookingID, (c.Name + ' - Room ' + CAST(b.RoomID AS VARCHAR)) AS DisplayText 
                                      FROM Bookings b 
@@ -53,7 +53,7 @@ namespace HotelManagementSystem3
         {
             if (cmbBookings.SelectedValue != null && int.TryParse(cmbBookings.SelectedValue.ToString(), out int bookingId))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DB.GetConnection())
                 {
                     string query = "SELECT TotalAmount FROM Bookings WHERE BookingID = @BookingID";
                     SqlCommand cmd = new SqlCommand(query, connection);
@@ -61,7 +61,9 @@ namespace HotelManagementSystem3
 
                     try
                     {
-                        connection.Open();
+                        if (connection.State != ConnectionState.Open)
+                            connection.Open();
+
                         object amount = cmd.ExecuteScalar();
                         if (amount != null)
                         {
@@ -87,9 +89,11 @@ namespace HotelManagementSystem3
 
             int bookingId = Convert.ToInt32(cmbBookings.SelectedValue);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = DB.GetConnection())
             {
-                connection.Open();
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+
                 SqlTransaction transaction = connection.BeginTransaction(); 
 
                 try
@@ -145,7 +149,11 @@ namespace HotelManagementSystem3
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); 
+                    try
+                    {
+                        transaction.Rollback(); 
+                    }
+                    catch { }
                     MessageBox.Show("Transaction Failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -153,7 +161,7 @@ namespace HotelManagementSystem3
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+         
             this.Close(); 
         }
     }
