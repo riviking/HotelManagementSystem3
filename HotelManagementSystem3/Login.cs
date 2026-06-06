@@ -21,6 +21,12 @@ namespace HotelManagementSystem3
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
+            frmSignUp signUpForm = new frmSignUp();
+            signUpForm.Show();
+            this.Hide();
+>>>>>>> b94301e (Add project files.)
             try
             {
         // Use SQL Authentication with the provided user
@@ -62,5 +68,9 @@ namespace HotelManagementSystem3
         {
             Application.Exit();
         }
+<<<<<<< HEAD
+=======
+       
+>>>>>>> b94301e (Add project files.)
     }
 }

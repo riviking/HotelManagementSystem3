@@ -72,6 +72,10 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(132, 22);
             this.txtName.TabIndex = 2;
+<<<<<<< HEAD
+=======
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+>>>>>>> b94301e (Add project files.)
             // 
             // label2
             // 

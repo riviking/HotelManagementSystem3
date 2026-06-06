@@ -46,6 +46,13 @@ namespace HotelManagementSystem3
             this.Hide();
             Login login = new Login();
             login.Show();
+<<<<<<< HEAD
+=======
+
+            // Check Out බටන් එක ක්ලික් කරාම ඔයා හදපු Check Out පිටුව ඕපන් කරන කෝඩ් එක
+            frmCheckOut checkOutForm = new frmCheckOut();
+            checkOutForm.Show(); // Check Out පිටුව පෙන්වනවා
+>>>>>>> b94301e (Add project files.)
         }
 
         private void btnExit_Click(object sender, EventArgs e)
