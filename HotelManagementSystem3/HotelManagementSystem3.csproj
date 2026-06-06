@@ -64,15 +64,12 @@
     <Compile Include="frmBooking.Designer.cs">
       <DependentUpon>frmBooking.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="frmCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCheckOut.Designer.cs">
       <DependentUpon>frmCheckOut.cs</DependentUpon>
     </Compile>
->>>>>>> b94301e (Add project files.)
     <Compile Include="frmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,15 +100,12 @@
     <Compile Include="frmRoom.Designer.cs">
       <DependentUpon>frmRoom.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="frmSignUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSignUp.Designer.cs">
       <DependentUpon>frmSignUp.cs</DependentUpon>
     </Compile>
->>>>>>> b94301e (Add project files.)
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,12 +117,9 @@
     <EmbeddedResource Include="frmBooking.resx">
       <DependentUpon>frmBooking.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
     <EmbeddedResource Include="frmCheckOut.resx">
       <DependentUpon>frmCheckOut.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> b94301e (Add project files.)
     <EmbeddedResource Include="frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,12 +135,9 @@
     <EmbeddedResource Include="frmRoom.resx">
       <DependentUpon>frmRoom.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
     <EmbeddedResource Include="frmSignUp.resx">
       <DependentUpon>frmSignUp.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> b94301e (Add project files.)
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

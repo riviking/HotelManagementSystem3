@@ -191,13 +191,10 @@ namespace HotelManagementSystem3
         {
             btnSearch.PerformClick();
         }
-<<<<<<< HEAD
-=======
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
 
         }
->>>>>>> b94301e (Add project files.)
     }
 }
